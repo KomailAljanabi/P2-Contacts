@@ -22,7 +22,20 @@
 
 
 ## Database Design
+- User Table
+| Primary Key | Object_ID          |
+|-------------|--------------------|
+|             | Username  Password |
 
+- Contacts Table
+| Primary Key | Object_ID                                                              |
+|-------------|------------------------------------------------------------------------|
+|             | Name  Phone Number  Email  makePublic  Company  User.Owner  Types.Type |
+
+- Types Table
+| Primary Key | Object_ID         |
+|-------------|-------------------|
+|             | Type  Description |
 
 
 ## Routes
