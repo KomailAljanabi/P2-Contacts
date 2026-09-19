@@ -22,21 +22,35 @@
 
 
 ## Database Design
-- User Table
-| Primary Key | Object_ID          |
-|-------------|--------------------|
-|             | Username  Password |
 
-- Contacts Table
-| Primary Key | Object_ID                                                              |
-|-------------|------------------------------------------------------------------------|
-|             | Name  Phone Number  Email  makePublic  Company  User.Owner  Types.Type |
+### Types
 
-- Types Table
-| Primary Key | Object_ID         |
-|-------------|-------------------|
-|             | Type  Description |
+| Key | Field |
+| :--- | :--- |
+| **PK** | `Object ID` |
+| | `Type` |
+| | `Description` |
 
+### User
+
+| Key | Field |
+| :--- | :--- |
+| **PK** | `Object ID` |
+| | `Username` |
+| | `Password` |
+
+### Contact Details
+
+| Key | Field |
+| :--- | :--- |
+| **PK** | `Object ID` |
+| | `Name` |
+| | `Phone Number` |
+| | `Email` |
+| | `makePublic` |
+| | `Company` |
+| **FK** | `User.Owner` |
+| **FK** | `Types.Type` |
 
 ## Routes
 | Method | Route                 | Description                  |
