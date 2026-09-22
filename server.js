@@ -5,17 +5,17 @@ const dotenv = require("dotenv").config() //this allows me to use my .env values
 const morgan = require('morgan')
 const session = require('express-session');
 const methodOverride = require('method-override')
-const {MongoStore} = require("connect-mongo");
+const { MongoStore } = require("connect-mongo");
 const connectToDB = require('./db.js')
 
 // middleware imports
-const isSignedIn = require("./middleware/is-signed-in.js");
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
 // routes Imports
 const authController = require("./routes/auth.routes.js");
 const indexController = require("./routes/index.routes.js");
-
+const prCtContoller = require("./routes/my-contacts.routes.js")
+const puCtController = require('./routes/all-contacts.routes.js')
 
 // Middleware
 app.use(express.static('public')) // my app will serve all static files from public folder
@@ -29,8 +29,8 @@ app.use(
     saveUninitialized: true,
 
     store: MongoStore.create({
-    mongoUrl: process.env.MONGODB_URI,
-    collectionName: "sessions"
+      mongoUrl: process.env.MONGODB_URI,
+      collectionName: "sessions"
     }),
 
     cookie: {
@@ -51,21 +51,22 @@ app.use(passUserToView)
 
 
 // Routes go here
-app.use('/auth',authController)
-app.use('/',indexController)
-
+app.use('/auth', authController)
+app.use('/', indexController)
+app.use('/my-contacts', prCtContoller)
+app.use('/all-contacts', puCtController)
 
 
 
 
 // connect to database and listen on Port 3000
 async function startServer() {
-    const PORT = process.env.PORT || 3000;
-    await connectToDB();
+  const PORT = process.env.PORT || 3000;
+  await connectToDB();
 
-    app.listen(PORT, () => {
-        console.log(`App is running on port ${PORT}`);
-    });
+  app.listen(PORT, () => {
+    console.log(`App is running on port ${PORT}`);
+  });
 }
 
 startServer();

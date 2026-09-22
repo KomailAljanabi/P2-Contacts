@@ -56,12 +56,12 @@
 | Method | Route                 | Description                  |
 |--------|-----------------------|------------------------------|
 | GET    | /                     | Home Page                    |
-| GET    | /sign-up              | Sign Up page                 |
+| GET    | /auth/sign-up         | Sign Up page                 |
 | POST   | /                     | User Creation                |
-| GET    | /sign-in              | Sign in Page                 |
+| GET    | /auth/sign-in         | Sign in Page                 |
 | POST   | /                     | User Sign in                 |
-| GET    | /new                  | Contact Creation Page        |
-| POST   | /all-contacts         | Contact Creation             |
+| GET    | /my-contacts/new      | Contact Creation Page        |
+| POST   | /my-contacts          | Contact Creation             |
 | GET    | /all-contacts         | View all public contacts     |
 | GET    | /my-contacts          | View all private contacts    |
 | GET    | /all-contacts/:id     | View shared contact details  |
