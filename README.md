@@ -15,6 +15,14 @@
 ![Sign Up Page](./public/Screenshot%202026-09-26%20115126.png)
 *User registration interface for new accounts.*
 
+#### 4. Private Contacts Page
+![Private Contacts Page](./public/Screenshot%202026-09-27%20000400.png)
+*Personal address book showing private entries, visibility toggles, and edit/delete actions.*
+
+#### 5. Public Directory Page
+![Public Directory Page](./public/Screenshot%202026-09-27%20000610.png)
+*Shared corporate directory displaying public contacts, contact types, and owner attribution.*
+
 ## Technologies Used
 - JavaScript
 - Node JS
