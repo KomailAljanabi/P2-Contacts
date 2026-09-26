@@ -4,18 +4,19 @@
 
 ## Screenshots
 #### 1. Home Page
-![Home Page](public\Screenshot 2026-09-26 114908.png)
+![Home Page](./public/Screenshot%202026-09-26%20114908.png)
 *Overview of the main dashboard and public contact directory.*
 
 #### 2. New Contact Page
-![New Contact Page](public\Screenshot 2026-09-26 115020.png)
+![New Contact Page](./public/Screenshot%202026-09-26%20115020.png)
 *Form for adding and categorizing new contacts.*
 
 #### 3. Sign Up Page
-![Sign Up Page](public\Screenshot 2026-09-26 115126.png)
+![Sign Up Page](./public/Screenshot%202026-09-26%20115126.png)
 *User registration interface for new accounts.*
 
 ## Technologies Used
+- JavaScript
 - Node JS
 - EJS
 - Express
@@ -76,7 +77,6 @@
 | POST   | /my-contacts          | Contact Creation             |
 | GET    | /all-contacts         | View all public contacts     |
 | GET    | /my-contacts          | View all private contacts    |
-| GET    | /all-contacts/:id     | View shared contact details  |
 | GET    | /my-contacts/:id/edit | Editing contact page         |
 | PUT    | /my-contacts/:id      | Edit Contact                 |
 | DELETE | /my-contacts/:id      | Delete Contact               |
