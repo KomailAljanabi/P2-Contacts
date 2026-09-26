@@ -1,0 +1,36 @@
+<header class="app-header">
+    <div class="header-container">
+        <a href="/" class="brand-logo-link" title="WebContacts Home">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScoXNTbe33bi6hDXFIBOO7T2dRE3G35pMP4MXCkw_9lg&s"
+                alt="WebContacts Logo" class="brand-logo-img">
+            <span class="logo-text">Web<span>Contacts</span></span>
+        </a>
+        <nav class="nav-links">
+            <a href="/" class="nav-item">Home</a>
+            <a href="/all-contacts" class="nav-item">Public Directory</a>
+            <% if (user) { %>
+                <a href="/my-contacts" class="nav-item">My Contacts</a>
+                <a href="/my-contacts/new" class="nav-item"><i class="fa-solid fa-plus mr-1"></i> New Contact</a>
+                <% } %>
+        </nav>
+        <div class="header-user-menu">
+            <% if (user) { %>
+                <div class="user-profile-badge">
+                    <div class="user-info">
+                        <span class="user-name">
+                            <%=user.username%>
+                        </span>
+                    </div>
+                    <a href="/auth/sign-out" class="btn btn-secondary">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </a>
+                </div>
+                <% } else { %>
+                    <div class="auth-buttons">
+                        <a href="/auth/sign-in" class="btn btn-outline">Sign In</a>
+                        <a href="/auth/sign-up" class="btn btn-primary">Sign Up</a>
+                    </div>
+                    <% } %>
+        </div>
+    </div>
+</header>

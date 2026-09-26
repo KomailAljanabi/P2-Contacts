@@ -3,7 +3,17 @@
 ## This site was built to register contacts for users in an organization, whether its a personal contact, a collegue, a supplier, a client, a service provider, or anyone needed to get a job done. It can be used to share contact information, separate types of contacts, and make an easy access to the contact details in the site. 
 
 ## Screenshots
+#### 1. Home Page
+![Home Page](public\Screenshot 2026-09-26 114908.png)
+*Overview of the main dashboard and public contact directory.*
 
+#### 2. New Contact Page
+![New Contact Page](public\Screenshot 2026-09-26 115020.png)
+*Form for adding and categorizing new contacts.*
+
+#### 3. Sign Up Page
+![Sign Up Page](public\Screenshot 2026-09-26 115126.png)
+*User registration interface for new accounts.*
 
 ## Technologies Used
 - Node JS
@@ -49,6 +59,8 @@
 | | `Email` |
 | | `makePublic` |
 | | `Company` |
+| | `job` |
+| | `location` |
 | **FK** | `User.Owner` |
 | **FK** | `Types.Type` |
 
@@ -65,7 +77,6 @@
 | GET    | /all-contacts         | View all public contacts     |
 | GET    | /my-contacts          | View all private contacts    |
 | GET    | /all-contacts/:id     | View shared contact details  |
-| GET    | /my-contacts/:id      | View private contact details |
 | GET    | /my-contacts/:id/edit | Editing contact page         |
 | PUT    | /my-contacts/:id      | Edit Contact                 |
 | DELETE | /my-contacts/:id      | Delete Contact               |

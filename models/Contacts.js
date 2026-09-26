@@ -8,8 +8,8 @@ const contactsSchema = new mongoose.Schema({
     },
     Phone: {
         type: Number,
-        min: 8,
-        max: 8,
+        maxLength: 8,
+        minLength: 8,
         required: true
     },
     Email: {
@@ -18,12 +18,19 @@ const contactsSchema = new mongoose.Schema({
     makePublic: {
         type: Boolean,
         default: false
+
     },
     Company: {
         type: String
     },
+    job: {
+        type: String
+    },
+    location: {
+        type: String
+    },
     Type: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         required: true,
         ref: "Types"
     },

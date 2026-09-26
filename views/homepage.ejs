@@ -1,14 +1,70 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Home</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScoXNTbe33bi6hDXFIBOO7T2dRE3G35pMP4MXCkw_9lg&s"
+        class="tab-favicon">
 </head>
-<body>
-    <%- include('./partials/navbar') %>
+<%- include('partials/header') %>
 
-    <h1>Welcome to my Website</h1>
-    
-</body>
+    <main class="main-content">
+        <section class="hero-section">
+            <div class="hero-container">
+                <div class="hero-text-content">
+                    <h1 class="hero-title">Organize, Connect & Share Organizational Contacts</h1>
+                    <p class="hero-subtitle">
+                        Seamlessly manage your personal connections while securely publishing shared contacts across
+                        your organization department or company.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="/all-contacts" class="btn btn-primary btn-lg">
+                            <i class="fa-solid fa-address-book mr-2"></i> Explore Directory
+                        </a>
+                        <a href="/my-contacts/create" class="btn btn-secondary btn-lg">
+                            <i class="fa-solid fa-plus mr-2"></i> Add First Contact
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+        <section class="features-section">
+            <div class="section-header">
+                <h2>Designed for Modern Organizations & Teams</h2>
+                <p>Everything you need to keep team communication organized and accessible</p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-shield-halved"></i></div>
+                    <h3>Personal vs Shared Isolation</h3>
+                    <p>Keep your private contacts completely confidential while sharing common vendor, client, or
+                        partner contacts with your whole team.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-user-gear"></i></div>
+                    <h3>Granular Access Control</h3>
+                    <p>Assign View-Only or Edit permissions for shared contacts. Control who can modify key phone
+                        numbers, emails, or notes.</p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon"><i class="fa-solid fa-filter"></i></div>
+                    <h3>Smart Tagging & Search</h3>
+                    <p>Categorize contacts by department, job title, custom tags (e.g. VIP, Vendor, Lead), or office
+                        location with instant filtering.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <%- include('partials/footer') %>
+        </body>
+
 </html>

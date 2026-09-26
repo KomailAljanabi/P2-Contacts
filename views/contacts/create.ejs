@@ -4,8 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Edit Contact - <%= contact.Name %>
-    </title>
+    <title>New Contact</title>
     <link rel="stylesheet" href="/css/style.css">
     <link rel="icon" type="image/png"
         href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScoXNTbe33bi6hDXFIBOO7T2dRE3G35pMP4MXCkw_9lg&s"
@@ -20,17 +19,12 @@
 
                 <div class="page-header">
                     <div>
-                        <h1 class="page-title">Edit Contact</h1>
-                        <p class="page-subtitle">Update contact details and visibility settings for <%= contact.Name %>
-                        </p>
+                        <h1 class="page-title">Create New Contact</h1>
+                        <p class="page-subtitle">Add a personal connection or share a new contact with your team</p>
                     </div>
-                    <a href="/my-contacts" class="btn btn-secondary">
-                        <i class="fa-solid fa-arrow-left mr-1"></i> Back to Contacts
-                    </a>
                 </div>
 
-                <!-- Form submits with PUT via method-override -->
-                <form action="/my-contacts/<%= contact._id %>?_method=PUT" method="POST" class="form-card">
+                <form action="/my-contacts" method="POST" class="form-card">
 
                     <div class="form-section">
                         <h3 class="form-section-title"><i class="fa-solid fa-user mr-2"></i> Personal Details</h3>
@@ -38,23 +32,22 @@
                         <div class="form-grid-2">
                             <div class="form-group">
                                 <label for="Name" class="required">Full Name</label>
-                                <input type="text" id="Name" name="Name" value="<%= contact.Name %>"
-                                    placeholder="e.g. Alex Morgan" required>
+                                <input type="text" id="Name" name="Name" placeholder="e.g. Alex Morgan" required>
                             </div>
 
                             <div class="form-group">
-                                <label for="Email">Email Address</label>
-                                <input type="email" id="Email" name="Email" value="<%=contact.Email%>"
-                                    placeholder="alex.morgan@example.com">
+                                <label for="Email" class="required">Email Address</label>
+                                <input type="Email" id="Email" name="Email" placeholder="alex.morgan@example.com"
+                                    required>
                             </div>
                         </div>
 
                         <div class="form-grid-2">
                             <div class="form-group">
                                 <label for="Phone" class="required">Phone Number: +973 </label>
-                                <input type="tel" id="Phone" name="Phone" value="<%= contact.Phone %>"
-                                    placeholder="3123 4567 / 6612 3456" required>
+                                <input type="tel" id="Phone" name="Phone" placeholder="3123 4567 / 6612 3456" required>
                             </div>
+
                         </div>
                     </div>
 
@@ -65,21 +58,18 @@
                         <div class="form-grid-2">
                             <div class="form-group">
                                 <label for="Company">Company / Enterprise</label>
-                                <input type="text" id="Company" name="Company" value="<%=contact.Company%>"
-                                    placeholder="e.g. Apex Dynamics">
+                                <input type="text" id="Company" name="Company" placeholder="e.g. Apex Dynamics">
                             </div>
 
                             <div class="form-group">
                                 <label for="job">Job Title</label>
-                                <input type="text" id="job" name="job" value="<%= contact.job%>"
-                                    placeholder="e.g. Senior Solutions Architect">
+                                <input type="text" id="job" name="job" placeholder="e.g. Senior Solutions Architect">
                             </div>
                         </div>
 
-                        <div class="form-grid-2">
-                                <div class="form-group">
+                            <div class="form-group">
                                 <label for="location">Office Location</label>
-                                <input type="text" id="location" name="location" value="<%=contact.location%>"
+                                <input type="text" id="location" name="location"
                                     placeholder="e.g. New York HQ / Floor 4">
                             </div>
                         </div>
@@ -90,7 +80,7 @@
 
                         <div class="radio-card-group">
                             <label class="radio-card">
-                                <input type="radio" name="makePublic" value="false" <%=contact.makePublic%> checked>
+                                <input type="radio" name="makePublic" value="false" checked>
                                 <div class="radio-content">
                                     <div class="radio-title"><i class="fa-solid fa-lock text-purple"></i> Personal
                                         Contact</div>
@@ -99,7 +89,7 @@
                             </label>
 
                             <label class="radio-card">
-                                <input type="radio" name="makePublic" value="true" <%=contact.makePublic%>>
+                                <input type="radio" name="makePublic" value="true">
                                 <div class="radio-content">
                                     <div class="radio-title"><i class="fa-solid fa-users text-indigo"></i> Share with
                                         Organization</div>
@@ -107,26 +97,23 @@
                                 </div>
                             </label>
                         </div>
-
                         <br><br>
-
                         <div class="form-group mt-4">
-                            <label for="Type" class="required">Type</label>
-                            <input type="text" id="Type" name="Type" required value="<%=contact.Type.Type%>"
-                                placeholder="e.g. VIP Client, Vendor, Colleague, Service Provider">
+                            <label for="Type">Type</label>
+                            <input type="text" id="Type" required name="Type"
+                                placeholder="e.g. VIP Client, Vendor, Collegue, Service Provider">
                         </div>
 
                         <div class="form-group">
-                            <label for="Description" class="required">Type Description</label>
-                            <input id="Description" value="<%=contact.Type.Description%>" name="Description" rows="3"
-                                required placeholder="Add Details About The Type....."></input>
+                            <label for="Description">Type Description</label>
+                            <input id="Description" name="Description" rows="3" required
+                                placeholder="Add Details About The Type....."></input>
                         </div>
                     </div>
 
                     <div class="form-actions">
-                        <a href="/my-contacts" class="btn btn-secondary btn-lg">Cancel</a>
                         <button type="submit" class="btn btn-primary btn-lg">
-                            <i class="fa-solid fa-floppy-disk mr-2"></i> Update Contact
+                            <i class="fa-solid fa-floppy-disk mr-2"></i> Save Contact
                         </button>
                     </div>
 

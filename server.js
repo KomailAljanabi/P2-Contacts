@@ -7,6 +7,8 @@ const session = require('express-session');
 const methodOverride = require('method-override')
 const { MongoStore } = require("connect-mongo");
 const connectToDB = require('./db.js')
+const dns = require('node:dns');
+dns.setServers(['8.8.8.8', '8.8.4.4']);
 
 // middleware imports
 const passUserToView = require("./middleware/pass-user-to-view.js");
@@ -42,21 +44,11 @@ app.use(
 app.use(passUserToView)
 
 
-
-
-
-
-
-
-
-
 // Routes go here
 app.use('/auth', authController)
 app.use('/', indexController)
 app.use('/my-contacts', prCtContoller)
 app.use('/all-contacts', puCtController)
-
-
 
 
 // connect to database and listen on Port 3000

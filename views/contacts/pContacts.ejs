@@ -4,11 +4,109 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Public Directory - Shared Contacts</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScoXNTbe33bi6hDXFIBOO7T2dRE3G35pMP4MXCkw_9lg&s"
+        class="tab-favicon">
 </head>
 
 <body>
+    <%- include('../partials/header') %>
 
+        <main class="main-container">
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h1 class="page-title"><i class="fa-solid fa-users-viewfinder text-primary mr-2"></i>Public
+                        Directory</h1>
+                    <p class="page-subtitle">Shared contacts across the organization.</p>
+                </div>
+                <a href="/my-contacts/new" class="btn btn-primary">
+                    <i class="fa-solid fa-plus mr-1"></i> Add Contact
+                </a>
+            </div>
+
+            <% if (pc && pc.length> 0) { %>
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Contact Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Work Details</th>
+                                    <th>Location</th>
+                                    <th>Type</th>
+                                    <th class="text-right">Added By</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% pc.forEach(contact=> { %>
+                                        <tr>
+                                            <td class="font-semibold">
+                                                <div class="contact-name-cell">
+                                                    <span>
+                                                        <%= contact.Name %>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <a href="#" class="phone-link">
+                                                    <i class="fa-solid fa-phone text-muted mr-1"></i>
+                                                    <%= contact.Phone %>
+                                                </a>
+                                            </td>
+                                            <td>
+                                                    <a href="#" class="email-link">
+                                                        <%= contact.Email %>
+                                                    </a>
+                                            </td>
+                                            <td>
+                                                <div class="work-info">
+                                                    <span class="company-name">
+                                                        <%= contact.Company %>
+                                                    </span>
+                                                    <span class="job-dept-sub">
+                                                        <%= contact.job %>
+                                                        <%= contact.dept%>
+                                                    </span>
+                                                </div>
+                                            </td>
+                                            <td>
+                                                <%= contact.location %>
+                                            </td>
+                                            <td>
+                                                <%=contact.Type.Type%>
+                                                <br>
+                                                <%=contact.Type.Description%>
+                                            </td>
+                                            <td class="text-right">
+                                                <span class="badge badge-secondary">
+                                                    <%=contact.Owner.username%>                                                 
+                                                </span>
+                                            </td>
+                                        </tr>
+                                        <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <% } else { %>
+                    <div class="empty-state-card">
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-folder-open"></i>
+                        </div>
+                        <h3>No Public Contacts Found</h3>
+                        <p>There are currently no shared contacts in the corporate directory.</p>
+                        <a href="/my-contacts/new" class="btn btn-primary mt-3">
+                            <i class="fa-solid fa-plus mr-1"></i> Add First Public Contact
+                        </a>
+                    </div>
+                    <% } %>
+        </main>
+
+        <%- include('../partials/footer') %>
 </body>
 
 </html>

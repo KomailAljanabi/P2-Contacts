@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Contacts</title>
+    <link rel="stylesheet" href="/css/style.css">
+    <link rel="icon" type="image/png"
+        href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScoXNTbe33bi6hDXFIBOO7T2dRE3G35pMP4MXCkw_9lg&s"
+        class="tab-favicon">
+</head>
+
+<body>
+    <%- include('../partials/header') %>
+
+        <main class="main-container">
+            <div class="page-header">
+                <div class="page-title-group">
+                    <h1 class="page-title"><i class="fa-solid fa-address-book text-primary mr-2"></i>My Private Contacts
+                    </h1>
+                    <p class="page-subtitle">Manage your personal directory entries and visibility settings.</p>
+                </div>
+                <a href="/my-contacts/new" class="btn btn-primary">
+                    <i class="fa-solid fa-plus mr-1"></i> Add Contact
+                </a>
+            </div>
+
+            <% if (pc && pc.length> 0) { %>
+                <div class="table-card">
+                    <div class="table-responsive">
+                        <table class="data-table">
+                            <thead>
+                                <tr>
+                                    <th>Contact Name</th>
+                                    <th>Phone</th>
+                                    <th>Email</th>
+                                    <th>Work Details</th>
+                                    <th>Location</th>
+                                    <th>Type</th>
+                                    <th>Visibility</th>
+                                    <th class="text-right">Actions</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <% pc.forEach(contact=> { %>
+                                    <tr>
+                                        <td class="font-semibold">
+                                            <div class="contact-name-cell">
+                                                <span>
+                                                    <%= contact.Name %>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="phone-link">
+                                                <i class="fa-solid fa-phone text-muted mr-1"></i>
+                                                <%= contact.Phone %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <% if (contact.Email) { %>
+                                                <a href="#" class="email-link">
+                                                    <%= contact.Email %>
+                                                </a>
+                                                <% }%>
+                                        </td>
+                                        <td>
+                                            <div class="work-info">
+                                                <span class="company-name">
+                                                    <%= contact.Company %>
+                                                </span>
+
+                                                <span class="job-dept-sub">
+                                                    <%= contact.job %>
+                                                        <%= contact.dept %>
+                                                </span>
+
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <%= contact.location%>
+                                        </td>
+                                        <td>
+                                            <span class="badge badge-type">
+                                                <%= contact.Type.Type%>
+                                                    <br>
+                                                    <%= contact.Type.Description%>
+                                            </span>
+                                        </td>
+                                        <td>
+                                            <% if (contact.makePublic) { %>
+                                                <span class="badge badge-success"><i class="fa-solid fa-globe mr-1"></i>
+                                                    Public</span>
+                                                <% } else { %>
+                                                    <span class="badge badge-secondary"><i
+                                                            class="fa-solid fa-lock mr-1"></i> Private</span>
+                                                    <% } %>
+                                        </td>
+                                        <td class="text-right">
+                                            <div class="action-buttons">
+                                                <a href="/my-contacts/<%= contact._id %>/edit"
+                                                    class="btn-action btn-edit" title="Edit Contact">
+                                                    <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSExKL4TPAkyRHfMvOyb4_-9YHKwFyXc4BYSewsdYkyRQ&s=10"
+                                                        alt="Edit" class="action-icon-img">
+                                                </a>
+                                                <form action="/my-contacts/<%= contact._id %>?_method=DELETE"
+                                                    method="POST" class="inline-form"
+                                                    onsubmit="return confirm('Are you sure you want to delete this contact?');">
+                                                    <button type="submit" class="btn-action btn-delete"
+                                                        title="Delete Contact">
+                                                        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTFj9-MCBWmwmmMhkZl6_cMqn8FZxtPJjzyGwUQb0Gs4A&s=10"
+                                                            alt="Delete" class="action-icon-img">
+                                                    </button>
+                                                </form>
+                                            </div>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <% } else { %>
+                    <div class="empty-state-card">
+                        <div class="empty-icon">
+                            <i class="fa-solid fa-user-slash"></i>
+                        </div>
+                        <h3>No Contacts Found</h3>
+                        <p>You haven't added any personal contacts to your address book yet.</p>
+                        <a href="/my-contacts/new" class="btn btn-primary mt-3">
+                            <i class="fa-solid fa-plus mr-1"></i> Create Your First Contact
+                        </a>
+                    </div>
+                    <% } %>
+        </main>
+
+
+        <%- include('../partials/footer') %>
+</body>
+
+</html>
