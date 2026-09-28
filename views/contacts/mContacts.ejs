@@ -24,12 +24,15 @@
                 <a href="/my-contacts/new" class="btn btn-primary">
                     <i class="fa-solid fa-plus mr-1"></i> Add Contact
                 </a>
+                <button class="btn btn-primary" onclick="exportToExcel()">Export Excel</button>
+                <button class="btn btn-primary" onclick="exportToPDF()">Export PDF</button>
+
             </div>
 
             <% if (pc && pc.length> 0) { %>
                 <div class="table-card">
                     <div class="table-responsive">
-                        <table class="data-table">
+                        <table id="mctable" class="data-table">
                             <thead>
                                 <tr>
                                     <th>Contact Name</th>
@@ -137,6 +140,25 @@
 
 
         <%- include('../partials/footer') %>
+
+            <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+            <script>
+                window.onload = function () {
+                    window.exportToExcel = function () {
+                        const tableElement = document.getElementById('mctable'); // <-- MAKE SURE THIS MATCHES YOUR TABLE ID EXACTLY
+                        const workbook = XLSX.utils.table_to_sheet(tableElement);
+                        const file = XLSX.utils.book_new();
+                        XLSX.utils.book_append_sheet(file, workbook, 'Sheet1');
+                        XLSX.writeFile(file, 'privateContacts.xlsx');
+                    };
+                    window.exportToPDF = function () {
+                        const tableElement = document.getElementById('mctable'); // <-- MAKE SURE THIS MATCHES YOUR TABLE ID EXACTLY    
+                        const options = { filename: 'privateContacts.pdf' }
+                        html2pdf().set(options).from(tableElement).save();
+                    };
+                };
+            </script>
 </body>
 
 </html>

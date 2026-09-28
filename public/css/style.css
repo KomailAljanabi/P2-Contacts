@@ -397,11 +397,6 @@ body {
     flex-direction: column;
 }
 
-.job-dept-sub {
-    font-size: 0.75rem;
-    color: #64748b;
-}
-
 .phone-link,
 .email-link {
     color: #38bdf8;

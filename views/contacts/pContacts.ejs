@@ -9,6 +9,8 @@
     <link rel="icon" type="image/png"
         href="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcScoXNTbe33bi6hDXFIBOO7T2dRE3G35pMP4MXCkw_9lg&s"
         class="tab-favicon">
+
+
 </head>
 
 <body>
@@ -24,12 +26,14 @@
                 <a href="/my-contacts/new" class="btn btn-primary">
                     <i class="fa-solid fa-plus mr-1"></i> Add Contact
                 </a>
+                <button class="btn btn-primary" onclick="exportToExcel()">Export Excel</button>
+                <button class="btn btn-primary" onclick="exportToPDF()">Export PDF</button>
             </div>
 
             <% if (pc && pc.length> 0) { %>
                 <div class="table-card">
                     <div class="table-responsive">
-                        <table class="data-table">
+                        <table id="pctable" class="data-table">
                             <thead>
                                 <tr>
                                     <th>Contact Name</th>
@@ -43,51 +47,51 @@
                             </thead>
                             <tbody>
                                 <% pc.forEach(contact=> { %>
-                                        <tr>
-                                            <td class="font-semibold">
-                                                <div class="contact-name-cell">
-                                                    <span>
-                                                        <%= contact.Name %>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <a href="#" class="phone-link">
-                                                    <i class="fa-solid fa-phone text-muted mr-1"></i>
-                                                    <%= contact.Phone %>
-                                                </a>
-                                            </td>
-                                            <td>
-                                                    <a href="#" class="email-link">
-                                                        <%= contact.Email %>
-                                                    </a>
-                                            </td>
-                                            <td>
-                                                <div class="work-info">
-                                                    <span class="company-name">
-                                                        <%= contact.Company %>
-                                                    </span>
-                                                    <span class="job-dept-sub">
-                                                        <%= contact.job %>
+                                    <tr>
+                                        <td class="font-semibold">
+                                            <div class="contact-name-cell">
+                                                <span>
+                                                    <%= contact.Name %>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="phone-link">
+                                                <i class="fa-solid fa-phone text-muted mr-1"></i>
+                                                <%= contact.Phone %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <a href="#" class="email-link">
+                                                <%= contact.Email %>
+                                            </a>
+                                        </td>
+                                        <td>
+                                            <div class="work-info">
+                                                <span class="company-name">
+                                                    <%= contact.Company %>
+                                                </span>
+                                                <span class="job-dept-sub">
+                                                    <%= contact.job %>
                                                         <%= contact.dept%>
-                                                    </span>
-                                                </div>
-                                            </td>
-                                            <td>
-                                                <%= contact.location %>
-                                            </td>
-                                            <td>
-                                                <%=contact.Type.Type%>
+                                                </span>
+                                            </div>
+                                        </td>
+                                        <td>
+                                            <%= contact.location %>
+                                        </td>
+                                        <td>
+                                            <%=contact.Type.Type%>
                                                 <br>
                                                 <%=contact.Type.Description%>
-                                            </td>
-                                            <td class="text-right">
-                                                <span class="badge badge-secondary">
-                                                    <%=contact.Owner.username%>                                                 
-                                                </span>
-                                            </td>
-                                        </tr>
-                                        <% }) %>
+                                        </td>
+                                        <td class="text-right">
+                                            <span class="badge badge-secondary">
+                                                <%=contact.Owner.username%>
+                                            </span>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
                             </tbody>
                         </table>
                     </div>
@@ -107,6 +111,26 @@
         </main>
 
         <%- include('../partials/footer') %>
+
+            <script src="https://unpkg.com/xlsx/dist/xlsx.full.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
+            <script>
+                window.onload = function () {
+                    window.exportToExcel = function () {
+                        const tableElement = document.getElementById('pctable'); // <-- MAKE SURE THIS MATCHES YOUR TABLE ID EXACTLY
+                        const workbook = XLSX.utils.table_to_sheet(tableElement);
+                        const file = XLSX.utils.book_new();
+                        XLSX.utils.book_append_sheet(file, workbook, 'Sheet1');
+                        XLSX.writeFile(file, 'publicContacts.xlsx');
+                    };
+                    window.exportToPDF = function () {
+                        const tableElement = document.getElementById('pctable'); // <-- MAKE SURE THIS MATCHES YOUR TABLE ID EXACTLY    
+                        const options = { filename: 'publicContacts.pdf' }
+                        html2pdf().set(options).from(tableElement).save();
+                    };
+                };
+            </script>
+
 </body>
 
 </html>
