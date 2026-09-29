@@ -146,16 +146,16 @@
             <script>
                 window.onload = function () {
                     window.exportToExcel = function () {
-                        const tableElement = document.getElementById('mctable'); // <-- MAKE SURE THIS MATCHES YOUR TABLE ID EXACTLY
-                        const workbook = XLSX.utils.table_to_sheet(tableElement);
-                        const file = XLSX.utils.book_new();
-                        XLSX.utils.book_append_sheet(file, workbook, 'Sheet1');
-                        XLSX.writeFile(file, 'privateContacts.xlsx');
+                        const tableElement = document.getElementById('mctable')
+                        const workbook = XLSX.utils.table_to_sheet(tableElement)
+                        const file = XLSX.utils.book_new()
+                        XLSX.utils.book_append_sheet(file, workbook, 'Sheet1')
+                        XLSX.writeFile(file, 'privateContacts.xlsx')
                     };
                     window.exportToPDF = function () {
-                        const tableElement = document.getElementById('mctable'); // <-- MAKE SURE THIS MATCHES YOUR TABLE ID EXACTLY    
+                        const tableElement = document.getElementById('mctable')
                         const options = { filename: 'privateContacts.pdf' }
-                        html2pdf().set(options).from(tableElement).save();
+                        html2pdf().set(options).from(tableElement).save()
                     };
                 };
             </script>

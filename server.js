@@ -1,7 +1,7 @@
 // imports
-const express = require("express") //importing express package
-const app = express() // creates a express application
-const dotenv = require("dotenv").config() //this allows me to use my .env values in this file
+const express = require("express")
+const app = express()
+const dotenv = require("dotenv").config()
 const morgan = require('morgan')
 const session = require('express-session');
 const methodOverride = require('method-override')
@@ -10,17 +10,17 @@ const connectToDB = require('./db.js')
 const dns = require('node:dns');
 dns.setServers(['8.8.8.8', '8.8.4.4']);
 
-// middleware imports
+
 const passUserToView = require("./middleware/pass-user-to-view.js");
 
-// routes Imports
+
 const authController = require("./routes/auth.routes.js");
 const indexController = require("./routes/index.routes.js");
 const prCtContoller = require("./routes/my-contacts.routes.js")
 const puCtController = require('./routes/all-contacts.routes.js')
 
-// Middleware
-app.use(express.static('public')) // my app will serve all static files from public folder
+
+app.use(express.static('public'))
 app.use(express.urlencoded({ extended: false }));
 app.use(morgan('dev'))
 app.use(methodOverride('_method'))
@@ -37,21 +37,29 @@ app.use(
 
     cookie: {
       httpOnly: true,
-      maxAge: 1000 * 60 * 60 * 24 // 1 day
+      maxAge: 1000 * 60 * 60 * 24
     }
   })
 );
 app.use(passUserToView)
 
 
-// Routes go here
+
 app.use('/auth', authController)
 app.use('/', indexController)
 app.use('/my-contacts', prCtContoller)
 app.use('/all-contacts', puCtController)
 
 
-// connect to database and listen on Port 3000
+app.use( async (req, res) => {
+  try {
+    await res.status(404).render('404.ejs', { requestedUrl: req.originalUrl });
+  } catch (err) {
+    console.log(err)
+  }
+});
+
+
 async function startServer() {
   const PORT = process.env.PORT || 3000;
   await connectToDB();

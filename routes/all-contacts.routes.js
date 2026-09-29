@@ -5,10 +5,14 @@ const User = require('../models/User')
 const isSignedIn = require('../middleware/is-signed-in')
 
 router.get('/', async (req, res) => {
-    const publicContacts = await Contacts.find({ makePublic: true })
-        .populate('Type')  
-        .populate('Owner')
+    try {
+        const publicContacts = await Contacts.find({ makePublic: true })
+            .populate('Type')
+            .populate('Owner')
 
-    res.render('contacts/pContacts.ejs', { pc: publicContacts });
+        res.render('contacts/pContacts.ejs', { pc: publicContacts });
+    } catch (err) {
+        console.log(err)
+    }
 });
 module.exports = router

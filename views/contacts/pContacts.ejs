@@ -117,16 +117,16 @@
             <script>
                 window.onload = function () {
                     window.exportToExcel = function () {
-                        const tableElement = document.getElementById('pctable'); // <-- MAKE SURE THIS MATCHES YOUR TABLE ID EXACTLY
-                        const workbook = XLSX.utils.table_to_sheet(tableElement);
-                        const file = XLSX.utils.book_new();
-                        XLSX.utils.book_append_sheet(file, workbook, 'Sheet1');
-                        XLSX.writeFile(file, 'publicContacts.xlsx');
+                        const tableElement = document.getElementById('pctable')
+                        const workbook = XLSX.utils.table_to_sheet(tableElement)
+                        const file = XLSX.utils.book_new()
+                        XLSX.utils.book_append_sheet(file, workbook, 'Sheet1')
+                        XLSX.writeFile(file, 'publicContacts.xlsx')
                     };
                     window.exportToPDF = function () {
-                        const tableElement = document.getElementById('pctable'); // <-- MAKE SURE THIS MATCHES YOUR TABLE ID EXACTLY    
+                        const tableElement = document.getElementById('pctable')
                         const options = { filename: 'publicContacts.pdf' }
-                        html2pdf().set(options).from(tableElement).save();
+                        html2pdf().set(options).from(tableElement).save()
                     };
                 };
             </script>

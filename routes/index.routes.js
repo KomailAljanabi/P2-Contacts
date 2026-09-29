@@ -2,6 +2,10 @@ const router = require("express").Router()
 
 
 router.get('/', (req, res) => {
-    res.render('homepage.ejs')
+    try {
+        res.render('homepage.ejs')
+    } catch (err) {
+        console.log(err)
+    }
 })
 module.exports = router;
