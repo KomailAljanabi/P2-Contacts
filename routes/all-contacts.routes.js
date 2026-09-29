@@ -9,6 +9,6 @@ router.get('/', async (req, res) => {
         .populate('Type')  
         .populate('Owner')
 
-    res.render('contacts/pcontacts.ejs', { pc: publicContacts });
+    res.render('contacts/pContacts.ejs', { pc: publicContacts });
 });
 module.exports = router
